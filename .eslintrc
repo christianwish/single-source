@@ -1,0 +1,49 @@
+{
+  "parser": "babel-eslint",
+  "root": true,
+  "extends": ["xo/esnext", "xo-react", "airbnb"],
+  "globals": {
+    "window": true,
+    "document": true,
+    "it": true,
+    "describe": true,
+    "beforeEach": true,
+    "expect": true,
+    "meteor": true,
+    "Assets": true
+  },
+  "rules": {
+    "indent": [2, 4],
+    "react/jsx-indent": [2, 4],
+    "react/prop-types": 0,
+    "babel/new-cap": 0,
+    "babel/arrow-parens": 0,
+    "react/prop-type": 0,
+    "react/jsx-filename-extension": [
+      1,
+      { 
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "comments": 100,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreRegExpLiterals": true,
+        "tabWidth": 4
+      }
+    ],
+    "arrow-body-style": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "one-var": 0,
+    "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0,
+    "global-require": 0,
+    "import/first": 0
+  }
+}
