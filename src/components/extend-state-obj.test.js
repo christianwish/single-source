@@ -20,7 +20,7 @@ describe('extendStateObj(currentState, actionObject)', () => {
         expect(actual).toEqual(expected);
     });
 
-    it('throws when actionObject has no type property', () => {
+    it('throws when actionObject has no path property', () => {
         const currentState = { test:1 };
         const actionObject = {
             payload: 1,
@@ -29,11 +29,11 @@ describe('extendStateObj(currentState, actionObject)', () => {
         expect(actual).toThrow();
     });
 
-    it('throws when actionObject.type is not of type string', () => {
+    it('throws when actionObject.path is not of type string', () => {
         const currentState = { test:1 };
         const actionObject = {
             payload: 1,
-            type: 5,
+            path: 5,
         };
         const actual = () => extendStateObj(currentState, actionObject);
         expect(actual).toThrow();
@@ -42,27 +42,27 @@ describe('extendStateObj(currentState, actionObject)', () => {
     it('throws when actionObject has no payload property', () => {
         const currentState = { test:1 };
         const actionObject = {
-            type: '',
+            path: '',
         };
         const actual = () => extendStateObj(currentState, actionObject);
         expect(actual).toThrow();
     });
 
-    it('removes and switches the hole currentState when actionObject.type is a empty string', () => {
+    it('removes and switches the hole currentState when actionObject.path is a empty string', () => {
         const currentState = { test:1 };
         const actionObject = {
-            type: '',
+            path: '',
             payload: [],
         };
         const actual = extendStateObj(currentState, actionObject);
         expect(actual).toEqual([]);
     });
 
-    it('extends object with given path in actionObject.type and set payload as value', () => {
+    it('extends object with given path in actionObject.path and set payload as value', () => {
         {
             const currentState = { test:1 };
             const actionObject = {
-                type: 'test.innerTest',
+                path: 'test.innerTest',
                 payload: 1,
             };
             const actual = extendStateObj(currentState, actionObject);
@@ -71,7 +71,7 @@ describe('extendStateObj(currentState, actionObject)', () => {
         {
             const currentState = { test:1 };
             const actionObject = {
-                type: 'apple.innerTest.innerInnerTest',
+                path: 'apple.innerTest.innerInnerTest',
                 payload: true,
             };
             const actual = extendStateObj(currentState, actionObject);
@@ -82,7 +82,7 @@ describe('extendStateObj(currentState, actionObject)', () => {
     it('returns a changed deep copy of currentState', () => {
         const currentState = { test:1 };
         const actionObject = {
-            type: 'test',
+            path: 'test',
             payload: 1,
         };
         const actual = extendStateObj(currentState, actionObject);

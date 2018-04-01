@@ -21,7 +21,6 @@
   "license": "MIT",
   "homepage": "https://github.com/christianheyn/oneandonly",
   "dependencies": {
-    "deepcopy": "^0.6.3",
     "dot-prop": "^4.2.0"
   },
   "devDependencies": {
