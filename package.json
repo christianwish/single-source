@@ -1,13 +1,13 @@
 {
-  "name": "oneandonly",
+  "name": "single-source",
   "version": "0.0.1",
   "description": "redux alternative without reducer",
-  "main": "",
+  "main": "dist/bundle.js",
   "scripts": {
-    "build": "webpack --config webpack.production.config.js --progress --profile --colors",
+    "build": "rollup ./src/components/create-store.js --format umd --name \"singleSource\" --file ./dist/bundle.js",
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
-    "watch:lint:js": "esw --color -w",
+    "watch:lint": "esw --color -w",
     "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors",
     "test": "npm run unittest && npm run lint",
     "unittest": "export NODE_ENV=test && jest",
@@ -20,12 +20,7 @@
   "author": "Christian Heyn <chris.heyn.dd@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/christianheyn/oneandonly",
-  "dependencies": {
-    "dot-prop": "^4.2.0"
-  },
   "devDependencies": {
-    "sass-loader": "^6.0.2",
-    "redux": "^3.7.2",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
@@ -58,6 +53,9 @@
     "react-addons-test-utils": "^15.6.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-test-renderer": "^15.6.1",
+    "redux": "^3.7.2",
+    "rollup": "^0.57.1",
+    "sass-loader": "^6.0.2",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "^3.3.0",

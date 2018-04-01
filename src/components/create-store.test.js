@@ -53,7 +53,7 @@ describe('createStore(initialState)', () => {
                 const testPath = 'test.innerTest';
                 const initialState = {
                     test: {
-                        innerTest: 6
+                        innerTest: 6,
                     },
                 };
                 const actual = createStore(initialState).getState(testPath);
@@ -135,8 +135,6 @@ describe('createStore(initialState)', () => {
                     payload: [2, 2],
                 });
 
-                const testPath = 'test';
-
                 const actual = testStore.getState();
                 const expected = { test: [2, 2], test2: 6 };
                 expect(actual).toEqual(expected);
@@ -162,7 +160,6 @@ describe('createStore(initialState)', () => {
                 const expected = undefined;
                 expect(actual).toEqual(expected);
             }
-
         });
     });
 });

@@ -1,5 +1,5 @@
-import { deepcopy } from './deepcopy';
-import dotProp from 'dot-prop';
+import { deepCopy } from './deep';
+import { dotPropSet } from './dot-prop';
 
 export const extendStateObj = (currentState, actionObject) => {
     if (
@@ -10,11 +10,11 @@ export const extendStateObj = (currentState, actionObject) => {
     }
 
     if (typeof actionObject.path !== 'string') {
-        throw new Error(`An action must have a path property`);
+        return undefined;
     }
 
     if (typeof actionObject.payload === 'undefined') {
-        throw new Error(`An action must have a payload property`);
+        return undefined;
     }
 
     const noWhitespace = actionObject.path.replace(/\s/g, '');
@@ -23,7 +23,7 @@ export const extendStateObj = (currentState, actionObject) => {
         return actionObject.payload;
     }
 
-    const stateCopy = deepcopy(currentState);
+    const stateCopy = deepCopy(currentState);
 
-    return dotProp.set(stateCopy, actionObject.path, actionObject.payload);
+    return dotPropSet(stateCopy, actionObject.path, actionObject.payload);
 };

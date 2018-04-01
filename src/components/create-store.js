@@ -1,29 +1,47 @@
-import { deepcopy } from './deepcopy';
+import { deepCopy, deepEqual } from './deep';
 import { extendStateObj } from './extend-state-obj';
-import dotProp from 'dot-prop';
+import { dotPropGet } from './dot-prop';
+import { filterSubscriptions } from './filter-subscriptions';
 
 export const createStore = (initialState = {}) => {
-    const store = { state: deepcopy(initialState) };
+    const store = { state: deepCopy(initialState) };
     const subscribeCollection = [];
+
+    const getState = (path = '') => {
+        if (typeof path !== 'string' || path === '') {
+            return deepCopy(store.state);
+        }
+
+        const partOfObject = dotPropGet(store.state, path);
+        const typeofPart = typeof partOfObject;
+
+        return (typeofPart === 'object')
+            ? deepCopy(partOfObject)
+            : (typeofPart !== 'undefined')
+            ? partOfObject
+            : undefined;
+    };
 
     return {
         dispatch: (actionObj) => {
-            store.state = extendStateObj(store.state, actionObj);
-        },
-        subscribe: (path = '', callback) => subscribeCollection.push({ path, callback }),
-        getState: (path = '') => {
-            if (typeof path !== 'string' || path === '') {
-                return deepcopy(store.state);
+            const lastState = deepCopy(store.state);
+            const newState = extendStateObj(store.state, actionObj);
+
+            if (deepEqual(lastState, newState)) {
+                return undefined;
             }
 
-            const partOfObject = dotProp.get(store.state, path);
-            const typeofPart = typeof partOfObject;
+            store.state = newState;
 
-            return (typeofPart === 'object')
-                ? deepcopy(partOfObject)
-                : (typeofPart !== 'undefined')
-                ? partOfObject
-                : undefined;
+            const callbacks = filterSubscriptions(subscribeCollection, lastState, newState);
+            if (callbacks.length === 0) {
+                return undefined;
+            }
+
+            // TODO: Execute subscriptions
+            return undefined;
         },
+        subscribe: (path = '', callback) => subscribeCollection.push({ path, callback }),
+        getState,
     };
 };

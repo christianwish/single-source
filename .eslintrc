@@ -44,6 +44,7 @@
     "import/prefer-default-export": 0,
     "no-underscore-dangle": 0,
     "global-require": 0,
-    "import/first": 0
+    "import/first": 0,
+    "no-nested-ternary": 0
   }
 }
