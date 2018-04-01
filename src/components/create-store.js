@@ -43,5 +43,6 @@ export const createStore = (initialState = {}) => {
         },
         subscribe: (path = '', callback) => subscribeCollection.push({ path, callback }),
         getState,
+        // TODO: connectReactComponent: (React, storeMapping) => (component) => {},
     };
 };
