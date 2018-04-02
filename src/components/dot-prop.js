@@ -8,16 +8,21 @@ export const dotPropGet = (sourceObj, path) => {
         return sourceObj;
     }
 
-    const pathArray = path.split('.');
-    const sourceObjClone = deepCopy(sourceObj);
+    if (path.match('.')) {
+        const pathArray = path.split('.');
+        const sourceObjClone = deepCopy(sourceObj);
 
-    return pathArray.reduce((accumulator, prop) => {
-        if (accumulator[prop]) {
-            return accumulator[prop];
-        }
+        return pathArray.reduce((accumulator, prop) => {
+            if (accumulator[prop]) {
+                return accumulator[prop];
+            }
 
-        return undefined;
-    }, sourceObjClone);
+            return undefined;
+        }, sourceObjClone);
+    }
+
+    return deepCopy(sourceObj);
+
 };
 
 export const dotPropSet = (sourceObj, path, value) => {

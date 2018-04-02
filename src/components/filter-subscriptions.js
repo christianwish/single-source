@@ -12,7 +12,7 @@ export const filterSubscriptions = (subscriptionsArray, oldState, newState) => {
         return [];
     }
 
-    return subscriptionsArray.filter((subscription) => {
+    const result = subscriptionsArray.filter((subscription) => {
         const { path } = subscription;
 
         const oldStateFromPath = dotPropGet(oldState, path);
@@ -20,4 +20,6 @@ export const filterSubscriptions = (subscriptionsArray, oldState, newState) => {
 
         return !deepEqual(oldStateFromPath, newStateFromPath);
     });
+
+    return result;
 };

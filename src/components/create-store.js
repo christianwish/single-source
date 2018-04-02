@@ -4,6 +4,8 @@ import { dotPropGet } from './dot-prop';
 import { filterSubscriptions } from './filter-subscriptions';
 
 export const createStore = (initialState = {}) => {
+    // TODO: validate initialState for only serializable data
+
     const store = { state: deepCopy(initialState) };
     const subscribeCollection = [];
 
@@ -33,12 +35,17 @@ export const createStore = (initialState = {}) => {
 
             store.state = newState;
 
-            const callbacks = filterSubscriptions(subscribeCollection, lastState, newState);
-            if (callbacks.length === 0) {
+            const filteredActionObjs = filterSubscriptions(subscribeCollection, lastState, newState);
+
+            if (filteredActionObjs.length === 0) {
                 return undefined;
             }
 
-            // TODO: Execute subscriptions
+            filteredActionObjs.forEach((action) => {
+                const changedData = dotPropGet(store.state, action.path);
+                action.callback(changedData);
+            });
+
             return undefined;
         },
         subscribe: (path = '', callback) => subscribeCollection.push({ path, callback }),

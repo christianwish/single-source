@@ -162,4 +162,85 @@ describe('createStore(initialState)', () => {
             }
         });
     });
+
+    describe(`createStore(...).dispatch(path)
+    &
+    createStore(...).subscribe(path = '', callback)`, () => {
+        it('is a function', () => {
+            const actual = typeof createStore().dispatch;
+            const expected = 'function';
+            expect(actual).toEqual(expected);
+        });
+
+        it('returns undefined', () => {
+            const actual = typeof createStore().dispatch();
+            const expected = 'undefined';
+            expect(actual).toEqual(expected);
+        });
+
+        it('executes callback when subscribed and dispatched', () => {
+            const testStore = createStore({ test: false });
+            const testCallback = jest.fn();
+            testStore.subscribe('', testCallback);
+            testStore.dispatch({
+                path: 'test',
+                payload: 4,
+            });
+            expect(testCallback.mock.calls.length).toEqual(1);
+        });
+
+        it('executes callback not when subscribed path not part of dispatch', () => {
+            const testStore = createStore({ test: false, test2: false });
+            const testCallback = jest.fn();
+            testStore.subscribe('test2', testCallback);
+            testStore.dispatch({
+                path: 'test',
+                payload: 4,
+            });
+            expect(testCallback.mock.calls.length).toEqual(0);
+        });
+
+        it('callback argument is new data by path', () => {
+            {
+                const testStore = createStore({ test: false, test2: false });
+                const testCallback = jest.fn();
+                testStore.subscribe('test', testCallback);
+                testStore.dispatch({
+                    path: 'test',
+                    payload: 4,
+                });
+                expect(testCallback.mock.calls[0][0]).toEqual(4);
+            }
+            {
+                const testStore = createStore({
+                    a: false,
+                    b: false,
+                    c: false,
+                });
+                const testCallback = jest.fn();
+                testStore.subscribe('c', testCallback);
+                testStore.dispatch({
+                    path: 'c',
+                    payload: 'c changed',
+                });
+                expect(testCallback.mock.calls[0][0]).toEqual('c changed');
+            }
+            {
+                const testStore = createStore({
+                    a: false,
+                    b: false,
+                    c: {
+                        d: false,
+                    },
+                });
+                const testCallback = jest.fn();
+                testStore.subscribe('c', testCallback);
+                testStore.dispatch({
+                    path: 'c.d',
+                    payload: 'd changed',
+                });
+                expect(testCallback.mock.calls[0][0]).toEqual({d: 'd changed'});
+            }
+        });
+    });
 });
