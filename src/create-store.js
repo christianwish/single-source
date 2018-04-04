@@ -1,8 +1,8 @@
-import { deepCopy, deepEqual } from './deep';
-import { extendStateObj } from './extend-state-obj';
-import { dotPropGet } from './dot-prop';
-import { filterSubscriptions } from './filter-subscriptions';
-import { unsubscribe } from './unsubscribe';
+import { deepCopy, deepEqual } from './components/deep';
+import { extendStateObj } from './components/extend-state-obj';
+import { dotPropGet } from './components/dot-prop';
+import { filterSubscriptions } from './components/filter-subscriptions';
+import { unsubscribe } from './components/unsubscribe';
 
 export const createStore = (initialState = {}) => {
     const privates = {
