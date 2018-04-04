@@ -77,4 +77,6 @@ describe('makeReactConnect(React, )', () => {
         const actual = create(<ConnectedComponent {...props} />);
         expect(actual).toMatchSnapshot();
     });
+
+    it.skip('renders children', () => {});
 });

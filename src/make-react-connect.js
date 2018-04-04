@@ -9,7 +9,7 @@ const createObjectFromStore = (store, mappingObj) => {
     return resultObj;
 };
 
-export const makeReactConnect = (React, store, mappingObj) => (Component) => {
+export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) => {
     const Provider = (props) => {
         const $ = {
             ...React.Component.prototype,
@@ -41,12 +41,17 @@ export const makeReactConnect = (React, store, mappingObj) => (Component) => {
 
         $.render = () => {
             const { state } = $;
+            const { children } = $.props;
             const resultProps = {
                 ...state,
                 ...privates.state,
             };
 
-            return <Component {...resultProps} />;
+            return React.createElement(
+                OriginComponent,
+                resultProps,
+                children,
+            );
         };
 
         return $;
