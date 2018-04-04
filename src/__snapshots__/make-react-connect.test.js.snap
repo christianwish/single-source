@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`makeReactConnect(React, ) --- no connection --- 1`] = `
+<div
+  className="test-component"
+>
+  <h1>
+    Hello World
+  </h1>
+  no text yet
+</div>
+`;
+
+exports[`makeReactConnect(React, ) rerenders connected component when dispatch 1`] = `
+<div
+  className="test-component"
+>
+  <h1>
+    Hello World
+  </h1>
+  refreshed text!
+</div>
+`;
+
+exports[`makeReactConnect(React, ) returns connected component 1`] = `
+<div
+  className="test-component"
+>
+  <h1>
+    Hello World
+  </h1>
+  HelloWorld!
+</div>
+`;
