@@ -87,9 +87,6 @@
     ],
     "moduleDirectories": [
       "node_modules"
-    ],
-    "jest-webpack-alias": {
-      "profile": "dev"
-    }
+    ]
   }
 }

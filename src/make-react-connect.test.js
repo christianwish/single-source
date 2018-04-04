@@ -78,5 +78,6 @@ describe('makeReactConnect(React, )', () => {
         expect(actual).toMatchSnapshot();
     });
 
+    it.skip('mount and dispatch something', () => {});
     it.skip('renders children', () => {});
 });
