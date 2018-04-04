@@ -2,19 +2,20 @@ import { deepCopy, deepEqual } from './deep';
 import { extendStateObj } from './extend-state-obj';
 import { dotPropGet } from './dot-prop';
 import { filterSubscriptions } from './filter-subscriptions';
+import { unsubscribe } from './unsubscribe';
 
 export const createStore = (initialState = {}) => {
-    // TODO: validate initialState for only serializable data
-
-    const store = { state: deepCopy(initialState) };
-    const subscribeCollection = [];
+    const privates = {
+        state: deepCopy(initialState),
+        subscriptionCollection: [],
+    };
 
     const getState = (path = '') => {
         if (typeof path !== 'string' || path === '') {
-            return deepCopy(store.state);
+            return deepCopy(privates.state);
         }
 
-        const partOfObject = dotPropGet(store.state, path);
+        const partOfObject = dotPropGet(privates.state, path);
         const typeofPart = typeof partOfObject;
 
         return (typeofPart === 'object')
@@ -24,32 +25,53 @@ export const createStore = (initialState = {}) => {
             : undefined;
     };
 
-    return {
-        dispatch: (actionObj) => {
-            const lastState = deepCopy(store.state);
-            const newState = extendStateObj(store.state, actionObj);
+    const dispatch = (actionObj) => {
+        const lastState = deepCopy(privates.state);
+        const newState = extendStateObj(privates.state, actionObj);
 
-            if (deepEqual(lastState, newState)) {
-                return undefined;
-            }
-
-            store.state = newState;
-
-            const filteredActionObjs = filterSubscriptions(subscribeCollection, lastState, newState);
-
-            if (filteredActionObjs.length === 0) {
-                return undefined;
-            }
-
-            filteredActionObjs.forEach((action) => {
-                const changedData = dotPropGet(store.state, action.path);
-                action.callback(changedData);
-            });
-
+        if (deepEqual(lastState, newState)) {
             return undefined;
-        },
-        subscribe: (path = '', callback) => subscribeCollection.push({ path, callback }),
+        }
+
+        privates.state = newState;
+
+        const filteredActionObjs = filterSubscriptions(
+            privates.subscriptionCollection,
+            lastState,
+            newState,
+        );
+
+        if (filteredActionObjs.length === 0) {
+            return undefined;
+        }
+
+        filteredActionObjs.forEach((action) => {
+            const changedData = dotPropGet(privates.state, action.path);
+            action.callback(changedData);
+        });
+
+        return undefined;
+    };
+
+    const subscribe = (path = '', callback) => {
+        const now = Date.now();
+        privates.subscriptionCollection.push({ path, callback, id: now });
+        return { id: now };
+    };
+
+    const unsubscribeMethod = (subscriptionObj) => {
+        privates.subscriptionCollection = unsubscribe(
+            privates.subscriptionCollection,
+            subscriptionObj,
+        );
+
+        return undefined;
+    };
+
+    return {
+        dispatch,
+        subscribe,
+        unsubscribe: unsubscribeMethod,
         getState,
-        // TODO: connectReactComponent: (React, storeMapping) => (component) => {},
     };
 };

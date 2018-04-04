@@ -10,7 +10,8 @@
     "beforeEach": true,
     "expect": true,
     "meteor": true,
-    "Assets": true
+    "Assets": true,
+    "jest": true
   },
   "rules": {
     "indent": [2, 4],

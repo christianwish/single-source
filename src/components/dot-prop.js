@@ -22,7 +22,6 @@ export const dotPropGet = (sourceObj, path) => {
     }
 
     return deepCopy(sourceObj);
-
 };
 
 export const dotPropSet = (sourceObj, path, value) => {
