@@ -1,5 +1,5 @@
 import { deepCopy } from './deep';
-import { dotPropSet } from './dot-prop';
+import { dotPropSet, dotPropGet } from './dot-prop';
 
 export const extendStateObj = (currentState, actionObject) => {
     if (
@@ -9,21 +9,23 @@ export const extendStateObj = (currentState, actionObject) => {
         return undefined;
     }
 
-    if (typeof actionObject.path !== 'string') {
-        return undefined;
-    }
-
-    if (typeof actionObject.payload === 'undefined') {
+    if (
+        typeof actionObject.path !== 'string' ||
+        typeof actionObject.payload === 'undefined'
+    ) {
         return undefined;
     }
 
     const noWhitespace = actionObject.path.replace(/\s/g, '');
-
-    if (noWhitespace === '') {
-        return actionObject.payload;
-    }
-
     const stateCopy = deepCopy(currentState);
 
-    return dotPropSet(stateCopy, actionObject.path, actionObject.payload);
+    const resultPayload = (typeof actionObject.payload === 'function')
+        ? actionObject.payload(dotPropGet(stateCopy, noWhitespace))
+        : actionObject.payload;
+
+    if (noWhitespace === '') {
+        return resultPayload;
+    }
+
+    return dotPropSet(stateCopy, actionObject.path, resultPayload);
 };

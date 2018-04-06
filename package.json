@@ -2,9 +2,10 @@
   "name": "single-source",
   "version": "0.0.1",
   "description": "redux alternative without reducer",
-  "main": "dist/bundle.js",
+  "main": "dist/single-source.js",
   "scripts": {
-    "build": "rollup ./src/export.js --format umd --name \"singleSource\" --file ./dist/bundle.js",
+    "build": "webpack --config webpack.production.config.js --progress --profile --colors",
+    "bundle": "rollup ./src/export.js --format umd --name \"singleSource\" --file ./dist/bundle.js",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "watch:lint": "esw --color -w",
     "test": "npm run unittest && npm run lint",

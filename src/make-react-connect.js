@@ -14,7 +14,7 @@ export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) 
         const $ = {
             ...React.Component.prototype,
             props,
-            state: {},
+            state: props,
         };
 
         const privates = {
@@ -30,14 +30,9 @@ export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) 
             });
         });
 
-        // TODO:
-        /*
         if (!isReact163(React.version)) {
-            $.componentWillReceiveProps = (nextProps) => {
-                // props to state
-            }
+            $.componentWillReceiveProps = nextProps => $.setState(nextProps);
         }
-        */
 
         $.render = () => {
             const { state } = $;

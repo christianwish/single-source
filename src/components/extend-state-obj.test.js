@@ -95,4 +95,50 @@ describe('extendStateObj(currentState, actionObject)', () => {
         expect(actual).toHaveProperty('test', 1);
         expect(actual).not.toHaveProperty('test2', 3);
     });
+
+    it('payload can be a function that will executed', () => {
+        const testFunc = jest.fn();
+        const currentState = { test: 1 };
+        const actionObject = {
+            path: 'test',
+            payload: testFunc,
+        };
+        extendStateObj(currentState, actionObject);
+        expect(testFunc.mock.calls.length).toEqual(1);
+    });
+
+    it('payload can be a function that will process the payload data', () => {
+        const testFunc = () => 3;
+        const currentState = { test: 1 };
+        const actionObject = {
+            path: 'test',
+            payload: testFunc,
+        };
+        const actual = extendStateObj(currentState, actionObject);
+        expect(actual).toEqual({ test: 3 });
+    });
+
+    it(`payload as a function will give current part of
+      state as argument to process the new state : (currentState) => {}`, () => {
+        {
+            const testFunc = n => (n + 3);
+            const currentState = { test: 2 };
+            const actionObject = {
+                path: 'test',
+                payload: testFunc,
+            };
+            const actual = extendStateObj(currentState, actionObject);
+            expect(actual).toEqual({ test: 5 });
+        }
+        {
+            const switchBool = currentState => currentState.map(bool => !bool);
+            const currentState = { boolArray: [true, false, true] };
+            const actionObject = {
+                path: 'boolArray',
+                payload: switchBool,
+            };
+            const actual = extendStateObj(currentState, actionObject);
+            expect(actual).toEqual({ boolArray: [false, true, false] });
+        }
+    });
 });
