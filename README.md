@@ -124,7 +124,7 @@ myStore.subscribe('user.email', (newEmail) => {
 })
 
 myStore.dispatch({
-	path: 'user.email'',
+	path: 'user.email',
     payload: 'ironman@stark.com',
 });
 // nothing logged because .dipatch not changed any data
