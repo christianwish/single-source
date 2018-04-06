@@ -48,7 +48,7 @@ myStore.getState('user.email');
 _changes the state_
 ```js
 myStore.dispatch({
-	path: 'items',
+    path: 'items',
     payload: [1, 2, 3, 4],
 });
 
@@ -64,7 +64,7 @@ myStore.getState();
 }*/
 
 myStore.dispatch({
-	path: 'user.email',
+    path: 'user.email',
     payload: 'ironman@stark.com',
 });
 
@@ -86,7 +86,7 @@ If you pass a function as payload it will be executed with the current state (or
 const double = currentItemsArray => currentItemsArray.map(n => n * n);
 
 myStore.dispatch({
-	path: 'items',
+    path: 'items',
     payload: double,
 });
 
@@ -108,11 +108,11 @@ myStore.getState();
 ### .subscribe(path, callback)
 ```js
 myStore.subscribe('currentLanguage', (newLanguage) => {
-	console.log('the new Language is: ', newLanguage);
+    console.log('the new Language is: ', newLanguage);
 })
 
 myStore.dispatch({
-	path: 'currentLanguage',
+    path: 'currentLanguage',
     payload: 'fr',
 });
 // 'the new Language is: fr'
@@ -120,11 +120,11 @@ myStore.dispatch({
 **NOTE: If .dipatch does not change data the subscribed callback will not be executed.**
 ```js
 myStore.subscribe('user.email', (newEmail) => {
-	console.log('the new email is: ', newEmail);
+    console.log('the new email is: ', newEmail);
 })
 
 myStore.dispatch({
-	path: 'user.email',
+    path: 'user.email',
     payload: 'ironman@stark.com',
 });
 // nothing logged because .dipatch not changed any data
