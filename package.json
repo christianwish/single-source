@@ -1,6 +1,6 @@
 {
   "name": "single-source",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "simple state managment",
   "main": "dist/single-source.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/christianheyn/single-source.git"
   },
   "bugs": {
-    "url": "https://github.com/christianheyn/single-source/issues", 
+    "url": "https://github.com/christianheyn/single-source/issues",
     "email": "chris.heyn.dd@gmail.com"
   },
   "author": {
