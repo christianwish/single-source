@@ -58,7 +58,7 @@ myStore.getState();
     }
 }*/
 ```
-[try this on runkit](https://runkit.com/christianheyn/5ace43b5c4912c0012197d73)
+[try this on runkit](https://runkit.com/christianheyn/single-source-getstate)
 
 Get a reduced state based on the given path
 ```js
@@ -113,7 +113,8 @@ myStore.dispatch({
 myStore.getState(USER_EMAIL);
 // 'ironman@stark.com'
 ```
-[try this on runkit](https://runkit.com/christianheyn/5ace456e5e52cc0012bacfd9)
+
+[try this on runkit](https://runkit.com/christianheyn/single-source-dispatch-path-value)
 
 ### __process function as payload__
 
@@ -140,7 +141,7 @@ myStore.getState();
     currentLanguage: 'en',
 }*/
 ```
-[try this on runkit](https://runkit.com/christianheyn/5ace45cbc4912c0012197f5c)
+[try this on runkit](https://runkit.com/christianheyn/single-source-dispatch-path-payload-func)
 
 **NOTE: You can not store a function in your state. Just seralizable data can be stored! A function as payload will always executed to recive seralizable data**
 ___
@@ -167,7 +168,7 @@ myStore.dispatch({
 });
 // log -> 'the new Language is: fr'
 ```
-[try this on runkit](https://runkit.com/christianheyn/5ace467ac2fb350012128b22)
+[try this on runkit](https://runkit.com/christianheyn/single-source-subscribe-path-callback)
 
 **NOTE: If .dipatch does not change data the subscribed callback will not be executed.**
 ```js
