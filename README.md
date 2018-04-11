@@ -1,4 +1,5 @@
 # single-source
+simple state managment
 
 ### import/require
 ```sh
@@ -28,7 +29,7 @@ const initialState = {
 const myStore = createStore(initialState);
 ```
 
-
+___
 ### .getState( [path] )
 get the current state
 ```js
@@ -57,6 +58,7 @@ myStore.getState();
     }
 }*/
 ```
+[try this on runkit](https://runkit.com/christianheyn/5ace43b5c4912c0012197d73)
 
 Get a reduced state based on the given path
 ```js
@@ -80,7 +82,9 @@ myStore.getState(USER_EMAIL);
 // 'tony@stark.com'
 
 ```
+[try this on runkit](https://runkit.com/christianheyn/5ace44d4c4912c0012197e89)
 
+___
 
 ### .dispatch({ path, payload })
 _changes the state_
@@ -109,6 +113,8 @@ myStore.dispatch({
 myStore.getState(USER_EMAIL);
 // 'ironman@stark.com'
 ```
+[try this on runkit](https://runkit.com/christianheyn/5ace456e5e52cc0012bacfd9)
+
 ### __process function as payload__
 
 If you pass a function as payload it will be executed with the current state (or part of state defiend by "path") as argument.
@@ -117,7 +123,7 @@ import { createStore } from 'single-source';
 
 const ITEMS = 'items';
 const initialState = {
-    items: [],
+    items: [1, 2, 3, 4],
     currentLanguage: 'en',
 };
 const myStore = createStore(initialState);
@@ -134,6 +140,8 @@ myStore.getState();
     currentLanguage: 'en',
 }*/
 ```
+[try this on runkit](https://runkit.com/christianheyn/5ace45cbc4912c0012197f5c)
+___
 **NOTE: You can not store a function in your state. Just seralizable data can be stored! A function as payload will always executed to recive seralizable data**
 
 
@@ -159,6 +167,8 @@ myStore.dispatch({
 });
 // log -> 'the new Language is: fr'
 ```
+[try this on runkit](https://runkit.com/christianheyn/5ace467ac2fb350012128b22)
+
 **NOTE: If .dipatch does not change data the subscribed callback will not be executed.**
 ```js
 import { createStore } from 'single-source';
@@ -178,5 +188,6 @@ myStore.dispatch({
     path: CURRENT_LANG,
     payload: 'en',
 });
+
 // nothing logged because .dipatch not changed any data
 ```
