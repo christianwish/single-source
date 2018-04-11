@@ -1,0 +1,11 @@
+coverage/
+src/
+mocks_/
+test-utils/
+.babelrc
+package-lock.json
+webpack-alias.js
+webpack-config.js
+webpack.loaders.js
+webpack.production.config.js
+yarn-error.log

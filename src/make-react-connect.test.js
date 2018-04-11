@@ -23,7 +23,7 @@ const TestComponent = (props) => {
     return $;
 };
 
-describe('makeReactConnect(React, )', () => {
+describe('makeReactConnect(React, store, mappingObj)', () => {
     it('is a function', () => {
         const actual = typeof makeReactConnect;
         const expected = 'function';

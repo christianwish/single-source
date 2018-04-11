@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`makeReactConnect(React, ) --- no connection --- 1`] = `
+exports[`makeReactConnect(React, store, mappingObj) --- no connection --- 1`] = `
 <div
   className="test-component"
 >
@@ -11,7 +11,7 @@ exports[`makeReactConnect(React, ) --- no connection --- 1`] = `
 </div>
 `;
 
-exports[`makeReactConnect(React, ) rerenders connected component when dispatch 1`] = `
+exports[`makeReactConnect(React, store, mappingObj) rerenders connected component when dispatch 1`] = `
 <div
   className="test-component"
 >
@@ -22,7 +22,7 @@ exports[`makeReactConnect(React, ) rerenders connected component when dispatch 1
 </div>
 `;
 
-exports[`makeReactConnect(React, ) returns connected component 1`] = `
+exports[`makeReactConnect(React, store, mappingObj) returns connected component 1`] = `
 <div
   className="test-component"
 >

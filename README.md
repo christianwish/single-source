@@ -5,6 +5,11 @@ __in progress!__
 **Do not use this in production yet!**
 
 ### import/require
+```sh
+$ npm install single-source
+# or
+$ yarn add single-source
+```
 ```js
 import { createStore } from 'single-source';
 // or
@@ -119,7 +124,7 @@ const initialState = {
     items: [],
     currentLanguage: 'en',
 };
-
+const myStore = createStore(initialState);
 const square = currentItemsArray => currentItemsArray.map(n => n * n);
 
 myStore.dispatch({
@@ -139,25 +144,43 @@ myStore.getState();
 
 ### .subscribe(path, callback)
 ```js
-myStore.subscribe('currentLanguage', (newLanguage) => {
+import { createStore } from 'single-source';
+
+const CURRENT_LANG = 'currentLanguage';
+const initialState = {
+    items: [],
+    currentLanguage: 'en',
+};
+const myStore = createStore(initialState);
+
+myStore.subscribe(CURRENT_LANG, (newLanguage) => {
     console.log('the new Language is: ', newLanguage);
 })
 
 myStore.dispatch({
-    path: 'currentLanguage',
+    path: CURRENT_LANG,
     payload: 'fr',
 });
-// 'the new Language is: fr'
+// log -> 'the new Language is: fr'
 ```
 **NOTE: If .dipatch does not change data the subscribed callback will not be executed.**
 ```js
-myStore.subscribe('user.email', (newEmail) => {
-    console.log('the new email is: ', newEmail);
+import { createStore } from 'single-source';
+
+const CURRENT_LANG = 'currentLanguage';
+const initialState = {
+    items: [],
+    currentLanguage: 'en',
+};
+const myStore = createStore(initialState);
+
+myStore.subscribe(CURRENT_LANG, (newLanguage) => {
+    console.log('the new Language is: ', newLanguage);
 })
 
 myStore.dispatch({
-    path: 'user.email',
-    payload: 'ironman@stark.com',
+    path: CURRENT_LANG,
+    payload: 'en',
 });
 // nothing logged because .dipatch not changed any data
 ```

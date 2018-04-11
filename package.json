@@ -1,7 +1,7 @@
 {
   "name": "single-source",
-  "version": "0.0.1",
-  "description": "redux alternative without reducer",
+  "version": "0.0.3",
+  "description": "simple state managment",
   "main": "dist/single-source.js",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
