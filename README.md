@@ -1,9 +1,5 @@
 # single-source
 
-__in progress!__
-**Not available on npm yet!**
-**Do not use this in production yet!**
-
 ### import/require
 ```sh
 $ npm install single-source

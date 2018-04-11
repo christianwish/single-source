@@ -1,11 +1,13 @@
 coverage/
 src/
-mocks_/
+mocks__/
 test-utils/
 .babelrc
+.eslintrc
+.jshintrc
 package-lock.json
 webpack-alias.js
-webpack-config.js
+webpack.config.js
 webpack.loaders.js
 webpack.production.config.js
 yarn-error.log
