@@ -141,9 +141,9 @@ myStore.getState();
 }*/
 ```
 [try this on runkit](https://runkit.com/christianheyn/5ace45cbc4912c0012197f5c)
-___
-**NOTE: You can not store a function in your state. Just seralizable data can be stored! A function as payload will always executed to recive seralizable data**
 
+**NOTE: You can not store a function in your state. Just seralizable data can be stored! A function as payload will always executed to recive seralizable data**
+___
 
 
 ### .subscribe(path, callback)

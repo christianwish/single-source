@@ -16,9 +16,24 @@
     "type": "git",
     "url": "https://github.com/christianheyn/single-source.git"
   },
-  "author": "Christian Heyn <chris.heyn.dd@gmail.com>",
+  "author": {
+    "name": "Christian Heyn",
+    "email": "chris.heyn.dd@gmail.com"
+  },
   "license": "MIT",
   "homepage": "https://github.com/christianheyn/single-source",
+  "keywords": [
+    "state",
+    "management",
+    "store",
+    "data",
+    "createStore",
+    "subscribe",
+    "subscription",
+    "dispatch",
+    "path",
+    "payload"
+  ],
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.2.3",
