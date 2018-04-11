@@ -84,11 +84,11 @@ myStore.getState();
 
 If you pass a function as payload it will be executed with the current state (or part of state defiend by "path") as argument.
 ```js
-const double = currentItemsArray => currentItemsArray.map(n => n * n);
+const square = currentItemsArray => currentItemsArray.map(n => n * n);
 
 myStore.dispatch({
     path: 'items',
-    payload: double,
+    payload: square,
 });
 
 myStore.getState();
