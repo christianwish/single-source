@@ -1,4 +1,7 @@
 # single-source
+
+[![Build Status](https://travis-ci.org/christianheyn/single-source.svg?branch=master)](https://travis-ci.org/christianheyn/single-source)
+
 simple state managment in JavaScript.
 
 Create a store and connect it to React components.
