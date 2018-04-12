@@ -1,5 +1,7 @@
 # single-source
-simple state managment
+simple state managment in JavaScript.
+
+Create a store and connect it to React components.
 
 ### import/require
 ```sh
@@ -8,9 +10,11 @@ $ npm install single-source
 $ yarn add single-source
 ```
 ```js
-import { createStore } from 'single-source';
+import { createStore, makeReactConnect } from 'single-source';
 // or
-const createStore = require('single-source').createStore;
+const singleSource = require('single-source');
+const createStore = singleSource.createStore;
+const makeReactConnect = singleSource.makeReactConnect;
 ```
 ### createStore( initialState )
 ```js
@@ -192,6 +196,65 @@ myStore.dispatch({
 
 // nothing logged because .dipatch not changed any data
 ```
+
+
+---
+
+## makeReactConnect(React, store, mapObj)(YourComponent)
+
+Connect React Components to the store.
+No Provider Component needed.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { makeReactConnect, createStore } from 'single-source';
+
+const initialState = {
+    counter: 0,
+};
+
+const store = createStore(initialState);
+const COUNTER = 'counter';
+const increase = n => (n + 1);
+const square = n => (n * n);
+
+const handleIncrease = () => store.dispatch({
+    path: COUNTER,
+    payload: increase,
+});
+
+const handleSquare = () => store.dispatch({
+    path: COUNTER,
+    payload: square,
+});
+
+const CounterDisplay = props => (
+    <input type={'number'} readOnly value={props.counter || 0} />
+);
+
+const ConnectedCounterDisplay = makeReactConnect(
+    React,
+    store,
+    { counter: COUNTER },
+)(CounterDisplay);
+
+const App = () => (
+    <div className="app">
+        <ConnectedCounterDisplay />
+        <button onClick={handleIncrease}>+ 1</button>
+        <button onClick={handleSquare}>n * n</button>
+    </div>
+);
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('root'),
+);
+
+```
+[try this example here](https://github.com/christianheyn/single-source-example/blob/master/index.js)
+
 ___
 
 ## Why?
@@ -218,3 +281,6 @@ With this in mind it should be easy to handle bigger states in JavaScript applic
 I hope this small tool helps you decrease the complexity of state management in apps.
 
 If you worked with tools like **[redux](https://redux.js.org/)** you probably won't replace it with single-source. There are no performance tests for single-source yet and there is a lot more to check before this is a ready-to-use tool (_pssssssst ... i already use it in private projects!_).
+
+
+_Thanks for reading!_
