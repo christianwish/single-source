@@ -118,6 +118,18 @@ describe('extendStateObj(currentState, actionObject)', () => {
         expect(actual).toEqual({ test: 3 });
     });
 
+    it('payload can be a function that can handle state with value 0', () => {
+        const currentState = { test: 0 };
+        const actionObject = {
+            path: 'test',
+            payload: n => (n + 1),
+        };
+        const actual = extendStateObj(currentState, actionObject);
+
+        expect(actual).not.toBe(currentState);
+        expect(actual).toHaveProperty('test', 1);
+    });
+
     it(`payload as a function will give current part of
       state as argument to process the new state : (currentState) => {}`, () => {
         {

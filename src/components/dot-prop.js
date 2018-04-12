@@ -13,7 +13,7 @@ export const dotPropGet = (sourceObj, path) => {
         const sourceObjClone = deepCopy(sourceObj);
 
         return pathArray.reduce((accumulator, prop) => {
-            if (accumulator[prop]) {
+            if (typeof accumulator[prop] !== 'undefined') {
                 return accumulator[prop];
             }
 

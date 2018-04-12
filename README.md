@@ -192,4 +192,29 @@ myStore.dispatch({
 
 // nothing logged because .dipatch not changed any data
 ```
+___
 
+## Why?
+
+
+If you are like me you are already thinking in paths when it comes to serializable data.
+What i call _path_ does not mean something complicated.
+
+```
+{
+ user: {
+        email: 'tony@stark.com',
+        firstName: 'Tony',
+        lastName: 'Stark'
+    }
+}
+```
+
+the _path_ `'user.email'` points to `'tony@stark.com'`.
+So the string `'user.email'` **reduces** your data to a specific part of an object.
+
+With this in mind it should be easy to handle bigger states in JavaScript applications. Put paths in constants or create new paths dynamically. Use pure-functions to mutate your state
+
+I hope this small tool helps you decrease the complexity of state management in apps.
+
+If you worked with tools like **[redux](https://redux.js.org/)** you probably won't replace it with single-source. There are no performance tests for single-source yet and there is a lot more to check before this is a ready-to-use tool (_pssssssst ... i already use it in private projects!_).
