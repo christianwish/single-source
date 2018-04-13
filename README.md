@@ -1,7 +1,6 @@
 # single-source
 
 [![Build Status](https://travis-ci.org/christianheyn/single-source.svg?branch=master)](https://travis-ci.org/christianheyn/single-source)
-
 [![npm version](https://badge.fury.io/js/single-source.svg)](https://badge.fury.io/js/single-source)
 
 simple state managment in JavaScript.
