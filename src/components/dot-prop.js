@@ -5,7 +5,7 @@ export const dotPropGet = (sourceObj, path) => {
         typeof sourceObj !== 'object' ||
         typeof path !== 'string'
     ) {
-        return sourceObj;
+        return deepCopy(sourceObj);
     }
 
     if (path.match('.')) {
@@ -27,9 +27,10 @@ export const dotPropGet = (sourceObj, path) => {
 export const dotPropSet = (sourceObj, path, value) => {
     if (
         typeof sourceObj !== 'object' ||
-        typeof path !== 'string'
+        typeof path !== 'string' ||
+        typeof value === 'undefined'
     ) {
-        return sourceObj;
+        return deepCopy(sourceObj);
     }
 
     const pathArray = path.split('.');

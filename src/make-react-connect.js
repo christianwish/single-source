@@ -10,7 +10,7 @@ const createObjectFromStore = (store, mappingObj) => {
 };
 
 export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) => {
-    const Provider = (props) => {
+    const SingleSourceProvider = (props) => {
         const $ = {
             ...React.Component.prototype,
             props,
@@ -53,10 +53,10 @@ export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) 
     };
 
     if (isReact163(React.version)) {
-        Provider.getDerivedStateFromProps = (nextProps) => {
+        SingleSourceProvider.getDerivedStateFromProps = (nextProps) => {
             return nextProps;
         };
     }
 
-    return Provider;
+    return SingleSourceProvider;
 };
