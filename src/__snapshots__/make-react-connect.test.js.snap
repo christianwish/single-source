@@ -11,6 +11,20 @@ exports[`makeReactConnect(React, store, mappingObj) --- no connection --- 1`] = 
 </div>
 `;
 
+exports[`makeReactConnect(React, store, mappingObj) renders children 1`] = `
+<div
+  className="test-component-with-children"
+>
+  <h1>
+    Children
+  </h1>
+  <p>
+    child 2
+  </p>
+  Test
+</div>
+`;
+
 exports[`makeReactConnect(React, store, mappingObj) rerenders connected component when dispatch 1`] = `
 <div
   className="test-component"

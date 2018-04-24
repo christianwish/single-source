@@ -40,7 +40,7 @@ export const dotPropSet = (sourceObj, path, value) => {
     const result = pointer;
 
     pathArray.forEach((prop, index) => {
-        if ((`${pointer[prop]}  `) !== '[object Object]') {
+        if ((`${pointer[prop]}`) !== '[object Object]') {
             pointer[prop] = {};
         }
 

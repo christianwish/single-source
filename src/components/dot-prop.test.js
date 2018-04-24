@@ -8,9 +8,18 @@ describe('dotPropSet(sourceObj, path, value)', () => {
     });
 
     it('is a function', () => {
-        const actual = dotPropSet({ test: 0 }, 'test', 1);
-        const expected = { test: 1 };
-        expect(actual).toEqual(expected);
+        {
+            const actual = dotPropSet({ test: 0 }, 'test', 1);
+            const expected = { test: 1 };
+            expect(actual).toEqual(expected);
+        }
+        {
+            const sourceObj = { test: { testinner: 'hello' } };
+            const path = 'test';
+            const actual = dotPropSet(sourceObj, path, 4);
+            const expected = { test: 4 };
+            expect(actual).toEqual(expected);
+        }
     });
 
     it('returns sourceObj copy when path or value are not defined', () => {
@@ -19,6 +28,10 @@ describe('dotPropSet(sourceObj, path, value)', () => {
         const expected = sourceObj;
         expect(actual).toEqual(expected);
         expect(actual).not.toBe(expected);
+    });
+
+    it('returns sourceObj copy when path or value are not defined', () => {
+
     });
 });
 
