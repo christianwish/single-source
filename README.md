@@ -11,8 +11,7 @@ Create a store and connect it to React components.
 ### import/require
 ```sh
 $ npm install single-source
-# or
-$ yarn add single-source
+# or yarn add single-source
 ```
 ```js
 import { createStore, makeReactConnect } from 'single-source';
@@ -285,7 +284,7 @@ With this in mind it should be easy to handle bigger states in JavaScript applic
 
 I hope this small tool helps you decrease the complexity of state management in apps.
 
-If you worked with tools like **[redux](https://redux.js.org/)** you probably won't replace it with single-source. There are no performance tests for single-source yet and there is a lot more to check before this is a ready-to-use tool (_pssssssst ... i already use it in private projects!_).
+If you worked with tools like **[redux](https://redux.js.org/)** you probably won't replace it with single-source. There are no performance tests for single-source yet.
 
 
 _Thanks for reading!_
