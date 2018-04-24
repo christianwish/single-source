@@ -7,7 +7,8 @@
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "watch:lint": "esw --color -w",
-    "test": "npm run unittest && npm run lint",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "npm run unittest && coveralls && npm run lint",
     "unittest": "export NODE_ENV=test && jest",
     "watch:test": "npm run unittest -- --watch"
   },
@@ -49,6 +50,7 @@
     "babel-preset-es2015": "6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-runtime": "^6.22.0",
+    "coveralls": "^3.0.0",
     "css-loader": "0.26.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
