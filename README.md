@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/christianheyn/single-source.svg?branch=master)](https://travis-ci.org/christianheyn/single-source)
 [![Coverage Status](https://coveralls.io/repos/github/christianheyn/single-source/badge.svg?branch=master)](https://coveralls.io/github/christianheyn/single-source?branch=master)
 [![npm version](https://badge.fury.io/js/single-source.svg)](https://badge.fury.io/js/single-source)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Simple state managment in JavaScript.
 

@@ -8,7 +8,7 @@
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "watch:lint": "esw --color -w",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "test": "npm run unittest && coveralls && npm run lint",
+    "test": "npm run unittest && npm run coveralls && npm run lint",
     "unittest": "export NODE_ENV=test && jest",
     "watch:test": "npm run unittest -- --watch"
   },
