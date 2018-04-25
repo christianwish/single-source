@@ -12,6 +12,8 @@ Simple state management in JavaScript applications.
 
 Create a store and connect it to React components.
 
+[Take a look at some simple examples here.](https://christianheyn.github.io/single-source-example/)
+
 ### import/require
 ```sh
 $ npm install single-source
@@ -261,8 +263,7 @@ ReactDOM.render(
 );
 
 ```
-[try this example here](https://github.com/christianheyn/single-source-example/blob/master/index.js)
-
+[try something like this here](https://christianheyn.github.io/single-source-example/)
 ___
 
 ## Why?
