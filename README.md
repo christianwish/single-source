@@ -1,4 +1,7 @@
+![single-source logo](./logo-bright.png "single-source logo")
+
 # single-source
+
 
 [![Build Status](https://travis-ci.org/christianheyn/single-source.svg?branch=master)](https://travis-ci.org/christianheyn/single-source)
 [![Coverage Status](https://coveralls.io/repos/github/christianheyn/single-source/badge.svg?branch=master)](https://coveralls.io/github/christianheyn/single-source?branch=master)
