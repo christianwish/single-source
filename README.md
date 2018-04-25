@@ -5,7 +5,7 @@
 [![npm version](https://badge.fury.io/js/single-source.svg)](https://badge.fury.io/js/single-source)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Simple state managment in JavaScript.
+Simple state management in JavaScript applications.
 
 Create a store and connect it to React components.
 
