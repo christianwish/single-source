@@ -98,7 +98,7 @@ describe('makeReactConnect(React, store, mappingObj)', () => {
         expect(actual).toMatchSnapshot();
     });
 
-    it('mount and dispatch something', () => {
+    it('mounted component updates on dispatch', () => {
         const testStore = createStore({ testData: { text: 'StoreText!' } });
         const ConnectedComponent = makeReactConnect(React, testStore, {
             text: 'testData.text',
@@ -119,6 +119,33 @@ describe('makeReactConnect(React, store, mappingObj)', () => {
         expect(actualAfter).toEqual('defaultPropsrefreshed text!');
         expect(actualBefore).not.toEqual(actualAfter);
     });
+
+    it('mounted component updates on dispatch with older React version', () => {
+        const oldReactMock = {
+            ...React,
+            version: '15.0.0',
+        };
+        const testStore = createStore({ testData: { text: 'StoreText!' } });
+        const ConnectedComponent = makeReactConnect(oldReactMock, testStore, {
+            text: 'testData.text',
+        })(TestComponent);
+        const props = {
+            headline: 'defaultProps',
+            text: 'no text yet',
+        };
+        const wrapper = mount(<ConnectedComponent {...props} />);
+        const actualBefore = wrapper.find('div').text();
+        expect(actualBefore).toEqual('defaultPropsStoreText!');
+
+        testStore.dispatch({
+            path: 'testData.text',
+            payload: 'refreshed text!',
+        });
+        const actualAfter = wrapper.find('div').text();
+        expect(actualAfter).toEqual('defaultPropsrefreshed text!');
+        expect(actualBefore).not.toEqual(actualAfter);
+    });
+
     it('renders children', () => {
         const testStore = createStore({ testData: { text: 'HelloWorld!' } });
         const ConnectedComponent =

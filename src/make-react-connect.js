@@ -1,4 +1,5 @@
-const isReact163 = versionString => !!versionString.match(/^16\.3/);
+import { reactHasGetDerivedStateFromProps } from './utils/react-has-get-derived-state-from-props';
+
 const createObjectFromStore = (store, mappingObj) => {
     const objKeys = Object.keys(mappingObj);
     const resultObj = {};
@@ -30,7 +31,7 @@ export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) 
             });
         });
 
-        if (!isReact163(React.version)) {
+        if (!reactHasGetDerivedStateFromProps(React.version)) {
             $.componentWillReceiveProps = nextProps => $.setState(nextProps);
         }
 
@@ -52,7 +53,7 @@ export const makeReactConnect = (React, store, mappingObj) => (OriginComponent) 
         return $;
     };
 
-    if (isReact163(React.version)) {
+    if (reactHasGetDerivedStateFromProps(React.version)) {
         SingleSourceProvider.getDerivedStateFromProps = (nextProps) => {
             return nextProps;
         };
